@@ -1,7 +1,8 @@
 {
     "version": 2,
+    "buildCommand": "composer install --no-interaction --prefer-dist && npm install --no-audit --no-fund && npm run build && php artisan config:cache && php artisan route:cache && php artisan view:cache",
     "builds": [
-        { "src": "api/index.php", "use": "vercel-php@0.6.0" },
+        { "src": "api/index.php", "use": "@vercel/php" },
         { "src": "public/**", "use": "@vercel/static" }
     ],
     "routes": [
@@ -12,10 +13,18 @@
         "APP_ENV": "production",
         "APP_DEBUG": "false",
         "APP_URL": "https://your-app.vercel.app",
-        "CACHE_DRIVER": "array",
+        "CACHE_STORE": "array",
         "SESSION_DRIVER": "cookie",
-        "QUEUE_DRIVER": "sync",
+        "QUEUE_CONNECTION": "sync",
         "VIEW_COMPILED_PATH": "/tmp",
-        "IGNITION_ENABLE_RUNNABLE_SOLUTIONS": "false"
+        "IGNITION_ENABLE_RUNNABLE_SOLUTIONS": "false",
+        "DB_CONNECTION": "pgsql",
+        "DB_HOST": "aws-0-eu-central-1.pooler.supabase.com",
+        "DB_PORT": "6543",
+        "DB_DATABASE": "postgres",
+        "DB_USERNAME": "postgres.rpanpoodmhujqrjwadyi",
+        "DB_PASSWORD": "your_supabase_password",
+        "DB_SSLMODE": "require",
+        "DB_URL": "postgresql://postgres.rpanpoodmhujqrjwadyi:your_supabase_password@aws-0-eu-central-1.pooler.supabase.com:6543/postgres?sslmode=require"
     }
 }
