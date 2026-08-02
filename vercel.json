@@ -1,13 +1,15 @@
 {
   "version": 2,
-  "framework": null,
-  "outputDirectory": "public",
-  "functions": {
-    "api/index.php": {
-      "runtime": "vercel-php@0.7.2",
-      "maxDuration": 30
+  "builds": [
+    {
+      "src": "api/index.php",
+      "use": "@vercel/php"
+    },
+    {
+      "src": "public/**",
+      "use": "@vercel/static"
     }
-  },
+  ],
   "routes": [
     {
       "src": "/build/(.*)",
@@ -17,23 +19,5 @@
       "src": "/(.*)",
       "dest": "/api/index.php"
     }
-  ],
-  "env": {
-    "APP_ENV": "production",
-    "APP_DEBUG": "false",
-    "APP_URL": "https://your-app.vercel.app",
-    "CACHE_STORE": "array",
-    "SESSION_DRIVER": "cookie",
-    "QUEUE_CONNECTION": "sync",
-    "VIEW_COMPILED_PATH": "/tmp",
-    "IGNITION_ENABLE_RUNNABLE_SOLUTIONS": "false",
-    "DB_CONNECTION": "pgsql",
-    "DB_HOST": "aws-0-eu-central-1.pooler.supabase.com",
-    "DB_PORT": "6543",
-    "DB_DATABASE": "postgres",
-    "DB_USERNAME": "postgres.rpanpoodmhujqrjwadyi",
-    "DB_PASSWORD": "your_supabase_password",
-    "DB_SSLMODE": "require",
-    "DB_URL": "postgresql://postgres.rpanpoodmhujqrjwadyi:your_supabase_password@aws-0-eu-central-1.pooler.supabase.com:6543/postgres?sslmode=require"
-  }
+  ]
 }
